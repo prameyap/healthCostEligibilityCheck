@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Health Cost Eligibility Check</title>
+        <meta charset="UTF-8">
+        <link href="/css/main.css" rel="stylesheet">
+    </head>
+    <body>
+    <h1>Health Cost Eligibility Check</h1>
+        <form action="#" th:action="@{/checkEligibility}" th:object="${regularAmount}" method="post">
+            <div id="error-summary" class="error">
+                <ul th:if="${regularAmountFormErrors?.hasFieldErrors('*')}">
+                    <li th:each="error, iterStat: ${regularAmountFormErrors?.getFieldErrors()}" style="float: left;">
+                        <span th:text="${error.getDefaultMessage()}"></span><span th:if="!${iterStat.last}">,&nbsp;</span>
+                    </li>
+                </ul>
+            </div>
+            <br/>
+            <div>
+                <div id="frequency-div" class="">
+                    <div>
+                        <label class="label" for="frequency">Frequency</label>
+                    </div>
+                    <div>
+                        <select class="control" name="select-box" id="frequency"
+                                th:field="*{frequency}">
+                            <option value="" selected="selected" hidden="true"></option>
+                            <option th:each="frequency : ${T(com.nhs.healthcosteligibility.model.Frequency).values()}"
+                                    th:value="${frequency}" th:text="${frequency.text}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label class="label" for="frequency">Amount</label>
+                    </div>
+                    <div>
+                        <input class="control" type="number" th:field="*{amount}" step=".01">
+                    </div>
+                </div>
+                <div>
+                    <p>
+                        <input type="submit" value="Submit"/>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
