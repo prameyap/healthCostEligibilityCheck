@@ -4,7 +4,6 @@ This application's aim is to check citizen's income and outgoings in order to me
 ### Technologies
     - Spring MVC
     - Thymeleaf
-    - Rest API
     - Maven
 
 ### How to run locally
